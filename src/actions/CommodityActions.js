@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { merge } from "lodash"
-import { createActions,createAction } from 'redux-actions'
+import { merge } from "lodash";
+import { createActions,createAction } from 'redux-actions';
+import {axiosTaget} from '../constants/axiosTaget.js';
 
 export const reqGetCommodity = {
 	type:'REQ_GET_COMMODITY'
@@ -40,7 +41,7 @@ export const errGetCommoditOne = {
 
 export const getCommodityOne = (id) => dispatch => {
 	dispatch(reqGetCommodityOne);
-	axios.post('http://localhost:3003/commodity/getcommodityid', {_id:id})
+	axios.post(axiosTaget+'/commodity/getcommodityid', {_id:id})
 	.then(response => {
 		console.log(response)
 		dispatch(resGetCommodityOne(response.data));		
@@ -157,7 +158,7 @@ export const getUserCommodity = createActions({
 
 export const getUserCommodityApi = userName => dispatch => {
 	dispatch(getUserCommodity.getUserCommodity.request())
-	axios.post('http://localhost:3003/commodity/getcommodityuser', {userName:userName})
+	axios.post(axiosTaget+'/commodity/getcommodityuser', {userName:userName})
 	.then(response => {
 		console.log(response)
 		dispatch(getUserCommodity.getUserCommodity.response(response.data));		

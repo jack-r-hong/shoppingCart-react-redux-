@@ -1,5 +1,5 @@
 import {SET_MESSAGE, RESET_MESSAGE} from '../constants/actionTypes.js';
-
+import {axiosTaget} from '../constants/axiosTaget.js';
 import axios from 'axios';
 import history from '../routes/history.js';
 
@@ -28,7 +28,7 @@ export const errRegister = {
 export const postRegister = (values) => dispatch => {
 	console.log(values)
 	dispatch(reqRegister);
-	axios.post('http://localhost:3003/users/register',
+	axios.post(axiosTaget+'/users/register',
 			values
 		)
 		.then(response =>{
@@ -84,7 +84,7 @@ export const reqLogOut = () => (dispatch) => {
 export const postLogin = (values) => dispatch => {
 	dispatch(reqLogin);
 	console.log(values)
-	axios.post('http://localhost:3003/users/login',
+	axios.post(axiosTaget+'/users/login',
 			values
 		)
 		.then(response =>{

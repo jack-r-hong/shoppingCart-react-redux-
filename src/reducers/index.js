@@ -8,7 +8,7 @@ import  * as fromCart  from './shoppingcart/CommodityReducers.js';
 
 const getIdQuantity = (state, id) => fromCount.getIdQuantity(state.countReducers.count, id);
 const getCommodity = (state, id) => fromCart.getCommodity(state.commodityReducers.cartContentReducers, id)
-const getAddedIds =(state) => fromCart.getAddedIds(state.commodityReducers.cartContentReducers)
+const getAddedIds =(state) => fromCart.getAddedIds(state.commodityReducers.cartContentReducers || {})
 
 export const getItemTotal = (state, id) => {
 	let itemTotal = getAddedIds(state).map((item) => (

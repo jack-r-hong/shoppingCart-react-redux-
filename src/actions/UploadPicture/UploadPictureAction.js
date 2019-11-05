@@ -1,5 +1,6 @@
 import { createActions } from 'redux-actions';
 import axios from 'axios';
+import {axiosTaget} from '../../constants/axiosTaget.js';
 
 
 	// handleImg = file => {
@@ -89,7 +90,7 @@ export const picturePost = (files, data,userName) => dispatch => {
 				     
 					console.log(postdata(data ,res.data.data.link, userName))
 				    dispatch(formDataPost.requestPostData());
-				    axios.post('http://localhost:3003/commodity/shelvestodatabase',
+				    axios.post(axiosTaget+'/commodity/shelvestodatabase',
 							postdata(data ,res.data.data.link, userName)
 						)
 						.then(response =>{

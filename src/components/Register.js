@@ -53,7 +53,7 @@ export default function Register({postRegister, resetmessage}) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Register
+          註冊帳號
         </Typography>
         <Formik
           initialValues={{ userName: '', passWord: '' }}
@@ -126,29 +126,43 @@ export default function Register({postRegister, resetmessage}) {
               />
               {errors.passWord && touched.passWord && errors.passWord}
 
-              <Button
-                type="button"  
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-                disabled={isSubmitting}
-                onClick={resetmessage}
-                
-              >
-                Reset
-              </Button>
+              
+              <Container>
+                <Box style={{display:'flex'}}>
+                  <Box mr='auto'>
+                    <Button
+                      type="button"  
+                      variant="contained"
+                      color="primary"
+                      className={classes.submit}
+                      disabled={isSubmitting}
+                      onClick={resetmessage}
+                      
+                    >
+                      Reset
+                    </Button>               
+                  </Box>
+                  <Box >
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      color="primary"
+                      className={classes.submit}
+                      disabled={isSubmitting}
+
+                    >
+                      Sign Up
+                    </Button>               
+                  </Box>                
+
+                </Box>                
+
+              </Container>
+
+
               
               
-              <Button
-                type="submit"
-                
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-                disabled={isSubmitting}
-              >
-                Sign Up
-              </Button>
+
 
             </form>
           )}
