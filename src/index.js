@@ -25,6 +25,7 @@ import AuctionList from './components/shoppingcart/AuctionList.js';
 import MemberCentre from './components/shoppingcart/MemberCentre.js';
 import MessageCenter from './components/shoppingcart/MessageCenter.js';
 import OrderConfirmation from './components/shoppingcart/OrderConfirmation.js';
+import UpdataCommodityContainer from './containers/shoppingcart/UpdataCommodityContainer.js';
 
 ReactDOM.render(
 	<Provider store={store}>
@@ -50,6 +51,7 @@ ReactDOM.render(
 			<Route path="/membercentre"  component={MemberCentre} />
 			<Route path="/messagecenter"  component={MessageCenter} />
 			<Route path="/orderconfirmation"  component={OrderConfirmation} />
+			<Route path="/updatacommodity"  component={UpdataCommodityContainer} />
 
 			<Redirect to='/shop'/>
 		</Switch>

@@ -41,8 +41,17 @@ class shoppingCartContainer extends Component {
 
 
 	render() {
-
 		
+		const data = this.props.commodityList[0]
+		const dataCutUp1 = data && data.slice(0,3)
+		const dataCutUp2 = data && data.slice(3,6)
+  		const dataCutUp3 = data && data.slice(6,9)
+  		const dataCutUp4 = data && data.slice(9,12)
+  		const dataCutUp5 = data && data.slice(12,15)
+  		const dataCutUp6 = data && data.slice(15,18)
+  		const dataCutUp7 = data && data.slice(18,21)
+  		
+		console.log(dataCutUp7)
 		// const data = this.props.commodityList;
 		// const dataarry = Object.keys(data).map((item, i) => {
 
@@ -72,10 +81,10 @@ class shoppingCartContainer extends Component {
 
 		// 	)
 		// });
-		console.log(localStorage.getItem('content'))
-		console.log(localStorage.getItem('id'))
-		console.log(JSON.parse(localStorage.getItem('content')))
-		console.log(localStorage.getItem('quantity'))
+		// console.log(localStorage.getItem('content'))
+		// console.log(localStorage.getItem('id'))
+		// console.log(JSON.parse(localStorage.getItem('content')))
+		// console.log(localStorage.getItem('quantity'))
 		// console.log(JSON.parse('{"5d9c3e43cec21e1710c73473":{"id":"5d9c3e43cec21e1710c73473","name":"商品測試","price":100,"productPicture":"../../images/mother-cat-sleeping-on-sofa-bed.jpg"}}'))
 		// localStorage.removeItem("content")
 		// localStorage.removeItem("id")
@@ -125,32 +134,32 @@ class shoppingCartContainer extends Component {
 						        	<Grid item md={3} sm={6}>
 							        	<Box>
 							        		<CommodityTabs 
-												commodityList={this.props.commodityList}
+												data={dataCutUp4}
 							        		/>	
 							        	</Box>
 							        	<Box mt={10}>
-							        		<CommodityTabs />	
+							        		<CommodityTabs data={dataCutUp1}/>	
 							        	</Box>	
 							        	<Box mt={10}>
-							        		<CommodityTabs />	
+							        		<CommodityTabs data={dataCutUp2}/>	
 							        	</Box>	
 							        	<Box mt={10}>
-							        		<CommodityTabs />	
+							        		<CommodityTabs data={dataCutUp3}/>	
 							        	</Box>								        										        						        											
 						        	</Grid>
 	
 						        	<Grid item md={3} sm={6}>
 							        	<Box>
-							        		<CommodityTabs />	
+							        		<CommodityTabs data={dataCutUp5}/>	
 							        	</Box>
 							        	<Box mt={10}>
-							        		<CommodityTabs />	
+							        		<CommodityTabs data={dataCutUp6}/>	
 							        	</Box>	
 							        	<Box mt={10}>
-							        		<CommodityTabs />	
+							        		<CommodityTabs data={dataCutUp4}/>	
 							        	</Box>	
 							        	<Box mt={10}>
-							        		<CommodityTabs />	
+							        		<CommodityTabs data={dataCutUp7}/>	
 							        	</Box>								        										        						        											
 						        	</Grid>
 

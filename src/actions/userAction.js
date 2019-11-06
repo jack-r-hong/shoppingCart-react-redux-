@@ -2,6 +2,7 @@ import {SET_MESSAGE, RESET_MESSAGE} from '../constants/actionTypes.js';
 import {axiosTaget} from '../constants/axiosTaget.js';
 import axios from 'axios';
 import history from '../routes/history.js';
+import {createActions} from 'redux-actions'
 
 
 export const setMessage = {
@@ -100,3 +101,22 @@ export const postLogin = (values) => dispatch => {
 
 }
 
+const validUserName = createActions({
+	VALID_USER_NAME:{
+		REQUEST:() => ({}),
+		'RESPONSE':(userNameValid)=>({userNameValid}),
+		'ERROR':(err)=>({err})		
+	}
+})
+
+export const validUserNameApi = username => dispatch => {
+	dispatch(validUserName.validUserName.request())
+	axios.post(axiosTaget+'/users/usernamevalid', {username})
+	.then(response => {
+		console.log(response)
+		dispatch(validUserName.validUserName.response(response.data.success))
+	}).catch((err) => {
+		console.log(err)
+	})
+	// dispatch(validUserName.validUserName.response(username))
+}

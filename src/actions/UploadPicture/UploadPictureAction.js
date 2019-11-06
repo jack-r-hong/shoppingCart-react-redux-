@@ -33,9 +33,11 @@ export const pictureUper = createActions({
 
 export const pictureUperApi = file => dispatch => {
 	var files = file[0];
-	var reader = new FileReader(files);
-	  
+	var reader = new FileReader();
+	reader.readAsDataURL(files)
+
 	reader.onloadend = function(event) {
+		console.log(reader)
 		dispatch(pictureUper.handleChangePicture(file[0],reader.result))
 	};
 }
@@ -134,6 +136,10 @@ export const formPostAPI = (data ,imgsrc,userName) => dispatch => {
 			.catch((err) => { console.error(err);dispatch(formDataPost.errorPostData(err)) 
 		}) ;	
 
+}
+
+export const test ={
+	type:1111
 }
 
 

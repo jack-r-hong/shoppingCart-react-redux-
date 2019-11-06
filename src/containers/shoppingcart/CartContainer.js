@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getCommodityId,fromCartDeleteApi } from '../../actions/CommodityActions.js';
+import { getCommodityId,fromCartDeleteApi,getCommodityOneUpdata } from '../../actions/CommodityActions.js';
 import Cart from '../../components/shoppingcart/cart.js';
 import CartBottomAppBar from '../../components/shoppingcart/cartBottomAppBar.js';
 import { getTotal, getItemTotal } from '../../reducers/index.js';

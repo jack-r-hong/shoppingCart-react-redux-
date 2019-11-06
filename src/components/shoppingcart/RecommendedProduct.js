@@ -103,7 +103,7 @@ export default function RecommendedPreoduct(props) {
       
 
   })   
-  console.log(data)
+  
 
 
 

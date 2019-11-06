@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import { makeStyles  } from '@material-ui/core/styles';
-import { getUserCommodityApi } from '../../actions/CommodityActions.js';
+import { getUserCommodityApi, deleteUserCommodityApi } from '../../actions/CommodityActions.js';
 import { connect } from 'react-redux';
 import AddIcon from '@material-ui/icons/Add';
 // import AppBar from '@material-ui/core/AppBar';
@@ -18,6 +18,7 @@ import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import MemberCentreAppBar from './MemberCentreAppBar.js';
+
 
 import  history  from '../../routes/history.js'
 
@@ -58,20 +59,20 @@ function Commodity(props){
 		          	<CardActionArea >
 					  <CardContent>
 					    <Typography variant="h5" component="h2">
-					      {props.name}
+					      {props.data[props._id].title}
 					    </Typography>
 					    <Typography className={classes.pos} color="textSecondary">	      
-							{props.subName || '無名稱'}
+							{props.data[props._id].subName || '無名稱'}
 					    </Typography>
 					    <CardMedia	    	
 					        className={classes.media}     
 					        title="cat"
-					        image={props.productPicture}
+					        image={props.data[props._id].productPicture}
 					        
 					    />
 					    
 					    <Typography variant="h5" component="p">
-					      ${props.price}
+					      ${props.data[props._id].price}
 					      <br />
 					      {''}
 					    </Typography>
@@ -79,13 +80,17 @@ function Commodity(props){
 					</CardActionArea>
 					  <CardActions>
 					  	<Typography className={classes.pos} color="textSecondary">	      
-							銷售:{props.salesVolume}
+							銷售:{props.data[props._id].salesVolume}
 					    </Typography>
 					     {/*this.props.children*/}
-				          <IconButton edge="start" className={'ml-auto mr-3'} color="inherit" aria-label="menu">
+				          <IconButton edge="start" className={'ml-auto mr-3'} color="inherit" aria-label="menu" onClick={() => history.push(`/updatacommodity?${props._id}`)}>
 				            <EditIcon />
 				          </IconButton>
-				          <IconButton edge="start" className={'mr-3'} color="inherit" aria-label="menu">
+				          <IconButton edge="start" className={'mr-3'} color="inherit" aria-label="menu" 
+				          	onClick={
+				          		() => {props.deleteUserCommodityApi(props._id)}
+				          	}
+				          >
 				            <DeleteForeverIcon />
 				          </IconButton>				          					     
 
@@ -133,7 +138,18 @@ class AuctionList extends Component {
 
 
 	render(){
-	console.log(this.props)	
+	// console.log(this.props.commodityList[0] && Object.keys(this.props.commodityList[0]))	
+	// console.log(
+	// 	this.props.commodityList.map(
+	// 		(item,i) => {
+	// 			if(Object.keys(item)[0] === "5db9428cf917831cac6a5c92"){return null
+	// 			}else{
+	// 				return item
+	// 			}
+
+	// 		}
+	// 	).filter(data => data !==null)
+	// )
 		return(
 		
 			
@@ -153,12 +169,10 @@ class AuctionList extends Component {
 						{this.props.commodityList.map((item , i) => {
 							return(
 								<Commodity 
-									key ={i}
-									name={item.content.title}
-									subName={item.content.subName}
-									productPicture={item.content.productPicture}
-									price={item.content.price}
-									salesVolume={item.content.salesVolume}
+									data={item}
+									key ={Object.keys(item)[0]}
+									_id = {Object.keys(item)[0]}
+									deleteUserCommodityApi={this.props.deleteUserCommodityApi}
 								/>
 							)
 
@@ -183,7 +197,8 @@ const mapStateTpProps = state => ({
 })
 
 const mapDispatchProps = dispatch => ({
-	getUserCommodity:(userName)=>dispatch(getUserCommodityApi(userName))
+	getUserCommodity:(userName)=>dispatch(getUserCommodityApi(userName)),
+	deleteUserCommodityApi: (id) => dispatch(deleteUserCommodityApi(id))
 })
 
 export default connect(

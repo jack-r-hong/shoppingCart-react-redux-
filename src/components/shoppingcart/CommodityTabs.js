@@ -3,6 +3,7 @@ import { autoPlay } from 'react-swipeable-views-utils';
 import SwipeableViews from 'react-swipeable-views';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
+import history from '../../routes/history.js';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -64,22 +65,6 @@ const useStyles = makeStyles(theme => ({
 export default function CommodityTabs(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  
-
-  const mapEvent = [
-    {
-      imgUrl :'../../images/adorable-animal-animal-photography-1056251.jpg',
-      label : '小灰貓'
-    },
-    {
-      imgUrl :'../../images/bride-clouds-daylight-949224.jpg',
-      label : '活動二'
-    },   
-    {
-      imgUrl :'../../images/adorable-animal-cat-9413.jpg',
-      label : '活動三'
-    },   
-  ]
   const timeer = () =>{
     
       setTimeout(()=>{
@@ -99,12 +84,15 @@ export default function CommodityTabs(props) {
         
       <div className={classes.appbar}>
 
-        {
-          mapEvent.map((item,i) => {
+        { 
+          props.data?
+          props.data.map((item,i) => {
             return(
-              <div onMouseEnter ={() => setValue(i)} className={value===i ?classes.action:classes.reaction} key={item.label}>{item.label}</div>    
+              <div onMouseEnter ={() => setValue(i)} className={value===i ?classes.action:classes.reaction} key={item._id}>{item.title}</div>    
             )
           })
+          :
+          <div></div>
         }
          
       </div>
@@ -112,11 +100,14 @@ export default function CommodityTabs(props) {
         <div style={{'width' : '100%', height: 230, backgroundColor:'#333', padding:'10px'}}>
           
             {
-              mapEvent.map((item,i) => {
+              props.data?
+              props.data.map((item,i) => {
                 return(
-                    <div key={item.imgUrl} style={{"backgroundImage": 'url('+item.imgUrl+')'}} className={value=== i ?classes.eventImage:classes.unEventImage} ></div>     
+                    <div key={item._id} style={{"backgroundImage": 'url('+item.productPicture+')'}} className={value=== i ?classes.eventImage:classes.unEventImage} onClick={() => history.push(`/commodity?${item._id}`)} ></div>     
                 )
               })
+              :
+              <div></div>
             }            
          
 

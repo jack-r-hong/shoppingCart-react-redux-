@@ -12,7 +12,7 @@ import CardContent from '@material-ui/core/CardContent';
 
 import Button from '@material-ui/core/Button';
 
-import {  pictureUperApi, picturePost } from '../../actions/UploadPicture/UploadPictureAction.js';
+import {  pictureUperApi, picturePost,test } from '../../actions/UploadPicture/UploadPictureAction.js';
 
 	// const Client_secret = 'fec9316b4911bc023024d998bae3fda6a724a6af';
 	// const Client_ID ='60afca6a28f6c69'
@@ -98,7 +98,7 @@ import {  pictureUperApi, picturePost } from '../../actions/UploadPicture/Upload
 
 
     render() {
-    	// console.log(this.props)
+    	console.log(this.props)
 	    return (
 		    <div>
 			    <Card style={{'width':'100%'}}>
@@ -115,12 +115,18 @@ import {  pictureUperApi, picturePost } from '../../actions/UploadPicture/Upload
 									}}>
 						        <input {...getInputProps()} />
 						        	{
+
+										
+
 						        		this.props.Preview ?
 						        			// <div style={{
 						        			// 	'bacj'
 						        			// }} />
 						        			<img src={`${this.props.Preview}`} width='100%' height='100%' alt='sss'/>	
 						        		:
+
+						        			!this.props.src ?
+
 											<div style={{
 												width:'100%',
 												height:'300px',
@@ -136,7 +142,9 @@ import {  pictureUperApi, picturePost } from '../../actions/UploadPicture/Upload
 													transform: 'translateX(-50%) translateY(-50%)'
 				
 												}}/>
-											</div>					        			
+											</div>	
+											:
+											<img src={`${this.props.src.productPicture}`} width='100%' height='100%' alt='sss'/>					        			
 						        	}
 
 						      </div>
@@ -181,8 +189,8 @@ import {  pictureUperApi, picturePost } from '../../actions/UploadPicture/Upload
 const mapDispatchProps = dispatch => {
 	return({
 		pictureUper: file => dispatch(pictureUperApi(file)),//dispatch(pictureUper.handleChangePicture(file))
-		picturePost: file => dispatch(picturePost(file))
-
+		picturePost: file => dispatch(picturePost(file)),
+		test:()=>dispatch(test)
 	})
 	
 }

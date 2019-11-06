@@ -49,6 +49,25 @@ export const getCommodityOne = (id) => dispatch => {
 		dispatch(errGetCommoditOne);
 	});
 }
+
+const updataGetCommodity = createActions({
+	updataGetCommodity:{
+		'REQUEST':()=>({}),
+		'RESPONSE':(data)=>({data}),
+		'ERROR':(err)=>({err})		
+	}
+})
+
+export const getCommodityOneUpdata = (id) => dispatch => {
+	dispatch(updataGetCommodity.updataGetCommodity.request());
+	axios.post(axiosTaget+'/commodity/getcommodityid', {_id:id})
+	.then(response => {
+		console.log(response)
+		dispatch(updataGetCommodity.updataGetCommodity.response(response.data));		
+	}).catch((error) => {
+		dispatch(updataGetCommodity.updataGetCommodity.error(error));
+	});
+}
  
 export const addToShoppingCart = (id,name,price,productPicture)  => ({
 	type:'ADD_TO_SHOPPINGCART',
@@ -148,24 +167,52 @@ export const getCommodityId = (id) => dispatch => {
 	resGetCommodityId();
 }
 
-export const getUserCommodity = createActions({
+export const userCommodity = createActions({
 	'GET_USER_COMMODITY':{
 		'REQUEST':()=>({}),
+		'RESPONSE':(data)=>({data}),
+		'ERROR':(err)=>({err})
+	},
+	'DELETE_USER_COMMODITY':{
+		'REQUEST':(id)=>({id}),
+		'RESPONSE':(id)=>({id}),
+		'ERROR':(err)=>({err})
+	},
+	'UPDATA_USER_COMMODITY':{
+		'REQUEST':(id)=>({id}),
 		'RESPONSE':(data)=>({data}),
 		'ERROR':(err)=>({err})
 	}
 })
 
 export const getUserCommodityApi = userName => dispatch => {
-	dispatch(getUserCommodity.getUserCommodity.request())
+	dispatch(userCommodity.getUserCommodity.request())
 	axios.post(axiosTaget+'/commodity/getcommodityuser', {userName:userName})
 	.then(response => {
 		console.log(response)
-		dispatch(getUserCommodity.getUserCommodity.response(response.data));		
+		dispatch(userCommodity.getUserCommodity.response(response.data));		
 	}).catch((error) => {
-		dispatch(getUserCommodity.getUserCommodity.error(error));
+		dispatch(userCommodity.getUserCommodity.error(error));
 	});
 	
+}
+
+export const deleteUserCommodityApi = id => dispatch => {
+	dispatch(userCommodity.deleteUserCommodity.request(id))
+	
+	axios.post(axiosTaget +'/commodity/deleteusercommodity', {id})
+	.then(response => {
+		console.log(response)
+		dispatch(userCommodity.deleteUserCommodity.response(response.data))
+	}).catch((error) => {
+		dispatch(userCommodity.deleteUserCommodity.error(error));
+	});
+
+
+}
+
+export const updataUserCommodity = id => dispatch => {
+	dispatch(userCommodity.upuataUserCommodity.request(id))
 }
 
 

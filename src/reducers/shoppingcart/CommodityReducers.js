@@ -3,6 +3,8 @@ import {merge} from "lodash";
 import { combineReducers } from 'redux';
 import formDataTemporaryStorageReducer from './shelvesReducers.js'
 import shelvesReducers from './shelvesReducers.js';
+import {updataCommodityReducers} from './UpdataCommodityReducers.js' 
+
 const inistate = {
 	
 }
@@ -67,6 +69,19 @@ export const getCommodity = (state, id) => {
 }
 export const getAddedIds = state => Object.keys(state)
 
+		// this.props.commodityList.map(
+		// 	(item,i) => {
+		// 		if(Object.keys(item)[0] === "5db9428cf917831cac6a5c92"){return null
+		// 		}else{
+		// 			return item
+		// 		}
+
+		// 	}
+		// ).filter(data => data !==null)
+
+
+
+
 const userAuctionCommodity =handleActions({
 	'GET_USER_COMMODITY/RESPONSE': (state, action) => {
 		// const commodityId = action.payload.data.map((item, i) => {
@@ -79,10 +94,24 @@ const userAuctionCommodity =handleActions({
 			action.payload.data.map((item, i) => {
 
 				return(
-					({...state , content : item})
+					({[item._id] : item})
 				)
 			})
 			// {...state, sss}
+		)
+	},
+	'DELETE_USER_COMMODITY/RESPONSE' : (state, action) => {
+		return(
+
+			state.map(
+				(item,i) => {
+					if(Object.keys(item)[0] === action.payload.id.id){return null
+					}else{
+						return item
+					}
+				}
+			).filter(data => data !==null)
+
 		)
 	}
 },[])
@@ -95,8 +124,8 @@ export default combineReducers({
   cartContentReducers,
   formDataTemporaryStorageReducer,
   shelvesReducers,
-  userAuctionCommodity
-  
+  userAuctionCommodity,
+  updataCommodityReducers
 })
 
 

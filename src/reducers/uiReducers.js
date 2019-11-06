@@ -58,13 +58,20 @@ const showCircularProgress =handleActions({
 	}
 },{show:false})
 
+const registerUserNameValid = handleActions({
+	'VALID_USER_NAME/RESPONSE':(state, action) => {
+		return {...state, Valid:action.payload.userNameValid}
+	}
+},{Valid: false})
+
  export default combineReducers({
  	menuBottonReducers,
 	loginDialogReducers,
 	showCartFreightDrawers,
 	shelvesUiReducers,
 	showUserDrawers,
-	showCircularProgress
+	showCircularProgress,
+	registerUserNameValid
  })
 
 

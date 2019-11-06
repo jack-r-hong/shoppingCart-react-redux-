@@ -135,8 +135,9 @@ export default function SimpleCard(props) {
 	}
 	const dispatch =useDispatch()
 	
-
+console.log(props)
   return (
+  	
 
   	<Container maxWidth="sm">
   		
