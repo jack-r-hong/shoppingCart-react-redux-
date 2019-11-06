@@ -18,7 +18,7 @@ export const errGetCommodity = {
 
 export const getCommodityAll = () => dispatch => {
 	dispatch(reqGetCommodity);
-	axios.get('http://localhost:3003/commodity/getcommodity')
+	axios.get( axiosTaget +'/commodity/getcommodity')
 	.then(response => {
 		dispatch(resGetCommodity(response.data));		
 	}).catch((error) => {
