@@ -19,7 +19,7 @@
     "history": "^4.10.1",
     "immutable": "^4.0.0-rc.12",
     "jsonwebtoken": "^8.5.1",
-    "merge": "^1.2.1",
+    "merge": "^2.1.1",
     "qs": "^6.9.0",
     "react": "^16.9.0",
     "react-bootstrap": "^1.0.0-beta.14",
